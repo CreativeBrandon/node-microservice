@@ -4,14 +4,11 @@ services:
     build: .
     ports:
      - "3000:3000"
-    command: npm start
     links: 
      - mongodb
      - cache
     volumes:
       - .:/dist
-    environment:
-     - MONGO_CONNECTION=mongodb://192.168.2.10
   mongodb:
     image: "mongo"
     container_name: mongodb

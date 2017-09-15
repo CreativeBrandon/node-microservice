@@ -25,7 +25,6 @@ const createConnection = async () => {
         const connection = mongoose.createConnection(`${config.MONGO.CONNECTION}/${config.MONGO.DB_NAME}`, options)
 
         connection.on('error', (err: any) => {
-            console.log('brandon')
             reject(err)
         })
         connection.once('open', (db: any) => {

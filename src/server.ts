@@ -2,10 +2,9 @@ import * as bodyParser from "body-parser";
 import { config } from './config';
 import * as cors from "cors";
 import * as express from 'express';
-import * as mongoose from "mongoose";
 import expressValidator = require("express-validator")
-import * as home from "./home/home";
 import * as mongo from "./utils/mongo";
+import * as routes from "./routes";
 
 const app = express()
 
@@ -21,7 +20,10 @@ app.use(cors())
 app.set('env', config.ENV)
 app.set('port', config.PORT)
 
-// Features
-home.routes(app)
+// Routes
+routes.init(app)
 
-export default app;
+app.listen(app.get('port'), () => {
+    console.log(("  App is running at http://localhost:%d in %s mode"), app.get('port'), app.get("env"))
+    console.log("  Press CTRL-C to stop\n");
+})
